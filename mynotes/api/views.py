@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from .models import Note
 
 # Create your views here.
 
@@ -44,4 +45,6 @@ def getRoutes(request):
 
 @api_view(['GET'])
 def getNotes(request):
+    notes = Note.objects.all()
+
     return Response('NOTES')

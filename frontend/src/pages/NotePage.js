@@ -17,6 +17,17 @@ const NotePage = ({match}) => {
         setNote(data)
     }
 
+    // to send a update on the backend
+    let updateNote = async() =>{
+      fetch(`http://127.0.0.1:8000/api/notes/${noteId}/update/`,{
+        method:"PUT",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(note)
+      })
+    }
+
 
   return (
     <div className='note'>
@@ -29,7 +40,7 @@ const NotePage = ({match}) => {
       </div>
 
       
-      <textarea defaultValue={note?.body}></textarea>
+      <textarea onChange={(e)=>{setNote({...note,'body':e.target.value})}} defaultValue={note?.body}></textarea>
     </div>
   )
 }

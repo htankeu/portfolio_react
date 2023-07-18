@@ -28,11 +28,23 @@ const NotePage = ({match,history}) => {
       })
     }
 
+    // deleteNote
+    let deleteNote = async () =>{
+      fetch(`http://127.0.0.1:8000/api/notes/${noteId}/delete/`,{
+        method:"DELETE",
+        headers:{
+          'Content-Type':'application/json'
+        },
+      })
+      history.push('/')
+    }
 
     let handleSubmit = ()=>{
       updateNote()
       history.push('/')
     }
+
+
 
   return (
     <div className='note'>

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {ReactComponent as ArrowLeft} from '../assets/arrow-left.svg'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
-const NotePage = ({match}) => {
+const NotePage = ({match,history}) => {
 
     let noteId = match.params.id
     let [note,setNote] = useState(null)
@@ -29,12 +29,17 @@ const NotePage = ({match}) => {
     }
 
 
+    let handleSubmit = ()=>{
+      updateNote()
+      history.push('/')
+    }
+
   return (
     <div className='note'>
       <div className='note-header'>
         <h3>
           <Link to="/">
-            <ArrowLeft/>
+            <ArrowLeft onClick = {handleSubmit}/>
           </Link>
         </h3>
       </div>

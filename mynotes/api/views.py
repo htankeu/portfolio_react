@@ -57,3 +57,17 @@ def getNote(request, pr_key):
     serializer = NoteSerializer(notes,many=False)
 
     return Response(serializer.data)
+
+
+# to updtae(put) a new value on the serializer
+@api_view(['PUT'])
+def updateNote(request,pr_key):
+
+    data = request.data
+    note = Note.objects.get(id=pr_key)
+    serializer = NoteSerializer(instance=note,data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)

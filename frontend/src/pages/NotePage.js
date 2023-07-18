@@ -50,9 +50,8 @@ const NotePage = ({match,history}) => {
     <div className='note'>
       <div className='note-header'>
         <h3>
-          <Link to="/">
             <ArrowLeft onClick = {handleSubmit}/>
-          </Link>
+            <button onClick={deleteNote}>Delete</button>
         </h3>
       </div>
 

@@ -12,6 +12,9 @@ const NotePage = ({match,history}) => {
     },[noteId])
 
     let getNote = async ()=>{
+      if(noteId === 'new'|| !noteId) return
+
+
         let response = await fetch(`http://127.0.0.1:8000/api/notes/${noteId}`)
         let data = await response.json()
         setNote(data)
@@ -51,8 +54,13 @@ const NotePage = ({match,history}) => {
       <div className='note-header'>
         <h3>
             <ArrowLeft onClick = {handleSubmit}/>
-            <button onClick={deleteNote}>Delete</button>
         </h3>
+        {noteId !=='new'? (
+          <button onClick={deleteNote}>Delete</button>
+        ):(
+          <button>Done</button>
+        )}
+        
       </div>
 
       

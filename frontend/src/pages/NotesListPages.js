@@ -1,16 +1,19 @@
 import React, {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import ListItem from '../components/ListItem'
+import AddButton from '../components/AddButton'
 
 const NotesListPages = () => {
 
     let [notes, setNotes] = useState([])
 
-    useEffect(()=>{
+    useEffect(()=>{        
         getNotes()
     }, [])
 
     let getNotes = async()=>{
+      if(notes==[]) return
+
         let response = await fetch('http://127.0.0.1:8000/api/notes/')
         let data = await response.json()
 
@@ -25,10 +28,11 @@ const NotesListPages = () => {
       </div>
 
       <div className='notes-list'>
-        {notes.map((note,index)=>(
+        {notes?.map((note,index)=>(
             <ListItem key={index} note={note}/>
         ))}
       </div>
+      <AddButton/>
     </div>
   )
 }

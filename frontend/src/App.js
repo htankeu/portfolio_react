@@ -19,7 +19,7 @@ function App() {
       <div className="App">
       <Header/>
       <Route path="/" exact component={NotesListPages}/>
-      <Route path="note/:id" component={NotePage}/>
+      <Route path="/note/:id" component={NotePage}/>
     </div>
     </Router>
     
